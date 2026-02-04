@@ -57,17 +57,37 @@ const Testimonials: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
 
   return (
-    <section id="testimonials" className="py-20 bg-blue-50/50 overflow-hidden relative scroll-mt-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
+    <section id="testimonials" className="py-24 bg-gray-900 overflow-hidden relative scroll-mt-24">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" 
+          alt="Abstract Dark Background" 
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-900/90 to-gray-900/90"></div>
+      </div>
+
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0" 
+           style={{ 
+             backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', 
+             backgroundSize: '32px 32px' 
+           }}>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h4 className="text-secondary font-bold uppercase tracking-wider mb-2">Success Stories</h4>
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">Trusted by Growing Businesses</h2>
-          <p className="max-w-2xl mx-auto text-gray-600">
+          <div className="inline-block p-1 px-3 rounded-md bg-white/5 border border-white/10 mb-3 backdrop-blur-sm">
+             <h4 className="text-secondary font-bold uppercase tracking-wider text-[10px]">Success Stories</h4>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Trusted by Growing Businesses</h2>
+          <p className="max-w-2xl mx-auto text-gray-400">
             Hear from our partners across India who have scaled their operations with our digital solutions.
           </p>
         </motion.div>
@@ -75,16 +95,16 @@ const Testimonials: React.FC = () => {
 
       {/* Marquee Container */}
       <div 
-        className="relative flex overflow-x-hidden cursor-pointer"
-        onClick={() => setIsPaused(!isPaused)}
-        title="Click to pause/resume"
+        className="relative flex overflow-x-hidden cursor-grab active:cursor-grabbing z-10"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
       >
-        <div className={`flex gap-6 animate-scroll min-w-full shrink-0 px-3 ${isPaused ? 'paused' : 'running'}`} style={{ animationPlayState: isPaused ? 'paused' : 'running' }}>
+        <div className={`flex gap-8 animate-scroll min-w-full shrink-0 px-4 py-8 ${isPaused ? 'paused' : 'running'}`} style={{ animationPlayState: isPaused ? 'paused' : 'running' }}>
           {TESTIMONIALS.map((testimonial, idx) => (
             <TestimonialCard key={`a-${idx}`} testimonial={testimonial} />
           ))}
         </div>
-        <div className={`flex gap-6 animate-scroll min-w-full shrink-0 px-3 ${isPaused ? 'paused' : 'running'}`} aria-hidden="true" style={{ animationPlayState: isPaused ? 'paused' : 'running' }}>
+        <div className={`flex gap-8 animate-scroll min-w-full shrink-0 px-4 py-8 ${isPaused ? 'paused' : 'running'}`} aria-hidden="true" style={{ animationPlayState: isPaused ? 'paused' : 'running' }}>
           {TESTIMONIALS.map((testimonial, idx) => (
             <TestimonialCard key={`b-${idx}`} testimonial={testimonial} />
           ))}
@@ -92,9 +112,9 @@ const Testimonials: React.FC = () => {
       </div>
       
       {/* Interaction Hint */}
-      <div className="flex justify-center mt-8 gap-2 text-sm text-gray-400 items-center">
+      <div className="flex justify-center mt-4 gap-2 text-sm text-gray-500 items-center relative z-10">
         <MousePointerClick className="h-4 w-4" />
-        <span>Click on cards to stop scrolling</span>
+        <span>Hover to pause & read</span>
       </div>
     </section>
   );
@@ -110,22 +130,34 @@ const getInitials = (name: string) => {
 };
 
 const TestimonialCard: React.FC<{ testimonial: typeof TESTIMONIALS[0] }> = ({ testimonial }) => (
-  <div className="w-[350px] md:w-[400px] flex-shrink-0 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow select-none">
-    <div className="flex items-center gap-1 mb-4">
+  <div className="w-[350px] md:w-[400px] flex-shrink-0 bg-white/5 backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/10 
+    hover:scale-105 hover:border-secondary/50 hover:bg-white/10 
+    transition-all duration-300 ease-out select-none relative group">
+    
+    {/* Decorative Quote Icon Positioned Absolutely */}
+    <div className="absolute top-6 right-8 text-white/5 group-hover:text-secondary/10 transition-colors duration-300">
+      <Quote className="h-12 w-12 transform rotate-180" />
+    </div>
+
+    <div className="flex items-center gap-1 mb-6 relative z-10">
       {[...Array(5)].map((_, i) => (
-        <Star key={i} className="h-4 w-4 fill-orange-400 text-orange-400" />
+        <Star key={i} className="h-4 w-4 fill-secondary text-secondary" />
       ))}
     </div>
-    <Quote className="h-8 w-8 text-blue-100 mb-4" />
-    <p className="text-gray-600 mb-6 italic min-h-[80px]">"{testimonial.content}"</p>
-    <div className="flex items-center gap-4">
-      <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-primary font-bold border-2 border-secondary/20 shadow-sm">
+    
+    <p className="text-gray-300 mb-8 italic min-h-[80px] leading-relaxed relative z-10 font-light">"{testimonial.content}"</p>
+    
+    <div className="flex items-center gap-4 border-t border-white/10 pt-6 relative z-10">
+      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-800 to-gray-700 border border-white/10 flex items-center justify-center text-secondary font-bold shadow-lg">
         {getInitials(testimonial.name)}
       </div>
       <div>
-        <h5 className="font-bold text-gray-900">{testimonial.name}</h5>
-        <p className="text-xs text-secondary font-medium uppercase tracking-wide">{testimonial.role}</p>
-        <p className="text-xs text-gray-400">{testimonial.location}</p>
+        <h5 className="font-bold text-white group-hover:text-secondary transition-colors">{testimonial.name}</h5>
+        <p className="text-xs text-gray-400 font-medium uppercase tracking-wide">{testimonial.role}</p>
+        <div className="flex items-center gap-1 mt-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          <p className="text-xs text-gray-500">{testimonial.location}</p>
+        </div>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 
 const Navbar: React.FC = () => {
@@ -32,24 +32,29 @@ const Navbar: React.FC = () => {
     }
   };
 
+  // Determine if the navbar should have a solid background (White)
+  // This happens if the user scrolls OR if the mobile menu is open
+  const showSolidNav = scrolled || isOpen;
+
   return (
     <nav 
       className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+        showSolidNav ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div 
-            className="flex-shrink-0 flex items-center gap-2 cursor-pointer" 
+            className="flex-shrink-0 flex items-center cursor-pointer" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <div className="bg-primary p-2 rounded-lg">
-              <Zap className="h-6 w-6 text-white" />
-            </div>
-            <span className={`font-bold text-2xl tracking-tighter transition-colors duration-300 ${scrolled ? 'animate-logo-pulse' : 'text-primary lg:text-white'}`}>
-              NISHA TECH STUDIO
-            </span>
+            <img 
+              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnn6uP1sKhluLCr0Y9aPwlyiQZPDbSsJlAyVXAe9XwVwmtOdm4WWDoO2mBohFrJY9sGrWGZZnDZnqXjcGXcPpGAQSJWSDJch-Ns9Q_d41pag3IQuYJz42kzZxsarv0qFE958ExXHQNLgKeSTntdYNvfVUE1SFMDwiM5K5qzS3JkbWDN_dzru2gF_n0KUs/s16000/nisha%20tech%20studio%20logo.png" 
+              alt="NISHA TECH STUDIO" 
+              className={`h-12 lg:h-14 w-auto object-contain transition-all duration-300 ${
+                showSolidNav ? 'brightness-0' : ''
+              }`}
+            />
           </div>
           
           {/* Desktop/Laptop Menu - Visible on lg screens and up */}
@@ -60,7 +65,7 @@ const Navbar: React.FC = () => {
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`text-sm font-medium transition-colors hover:text-secondary ${
-                  scrolled ? 'text-gray-700' : 'text-gray-200'
+                  showSolidNav ? 'text-primary' : 'text-gray-200'
                 }`}
               >
                 {item.label}
@@ -73,7 +78,7 @@ const Navbar: React.FC = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none ${
-                scrolled ? 'text-gray-700' : 'text-primary lg:text-white' 
+                showSolidNav ? 'text-primary' : 'text-white' 
               }`}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -91,7 +96,7 @@ const Navbar: React.FC = () => {
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="block px-3 py-4 rounded-md text-base font-medium text-gray-700 hover:text-secondary hover:bg-gray-50 border-b border-gray-50 last:border-0"
+                className="block px-3 py-4 rounded-md text-base font-medium text-primary hover:text-secondary hover:bg-gray-50 border-b border-gray-50 last:border-0"
               >
                 {item.label}
               </a>

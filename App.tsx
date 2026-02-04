@@ -9,10 +9,13 @@ import Testimonials from './components/Testimonials';
 import Process from './components/Process';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ScrollProgress from './components/ScrollProgress';
+import BackToTop from './components/BackToTop';
 
 function App() {
   return (
     <div className="min-h-screen bg-neutral text-gray-900 font-sans selection:bg-secondary selection:text-white">
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
@@ -25,6 +28,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <BackToTop />
     </div>
   );
 }

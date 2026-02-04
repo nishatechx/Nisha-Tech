@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
       ctx.clearRect(0, 0, width, height);
       
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
-      ctx.fillStyle = 'rgba(249, 115, 22, 0.3)'; // Secondary orange color
+      ctx.fillStyle = 'rgba(255, 207, 0, 0.4)'; // Secondary Yellow color
 
       for(let i=0; i<particles.length; i++) {
         let p = particles[i];
@@ -96,19 +96,19 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative w-full min-h-screen flex items-center overflow-hidden">
+    <section id="home" className="relative w-full min-h-screen flex items-center overflow-hidden bg-primary">
       {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 opacity-60">
         <img 
           src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80" 
           alt="Modern Indian Office" 
           className="w-full h-full object-cover object-center"
         />
-        {/* Adjusted Gradient: Lighter on the right to show image, dark on left for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/90 to-slate-900/60 sm:to-slate-900/40"></div>
-        {/* Additional bottom gradient for smooth transition */}
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-900 to-transparent"></div>
       </div>
+      
+      {/* Overlays */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40"></div>
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-primary to-transparent"></div>
 
       {/* Canvas Layer for Network Animation */}
       <canvas 
@@ -128,13 +128,13 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-orange-500/30 rounded-full bg-orange-500/10 backdrop-blur-md"
+            className="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-secondary/30 rounded-full bg-secondary/10 backdrop-blur-md"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
             </span>
-            <span className="text-orange-200 font-medium text-xs sm:text-sm tracking-wide uppercase">Trusted by 100+ Indian Businesses</span>
+            <span className="text-secondary font-medium text-xs sm:text-sm tracking-wide uppercase">Trusted by 100+ Indian Businesses</span>
           </motion.div>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-8 text-white tracking-tight">
@@ -143,7 +143,7 @@ const Hero: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
-                className="bg-gradient-to-r from-orange-400 via-orange-500 to-amber-500 text-transparent bg-clip-text animate-gradient-x"
+                className="bg-gradient-to-r from-yellow-300 via-secondary to-yellow-500 text-transparent bg-clip-text animate-gradient-x"
               >
                 Empowering Indian
               </motion.span>
@@ -172,7 +172,7 @@ const Hero: React.FC = () => {
               className="block mt-2 sm:mt-4 text-2xl sm:text-4xl md:text-5xl font-semibold leading-tight"
             >
               <span className="text-gray-300">with </span>
-              <span className="bg-gradient-to-r from-green-400 via-green-500 to-emerald-400 text-transparent bg-clip-text">
+              <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 text-transparent bg-clip-text">
                 Digital & Automation Solutions
               </span>
             </motion.span>
@@ -182,7 +182,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.1, duration: 0.8 }}
-            className="text-lg sm:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed font-light"
+            className="text-lg sm:text-xl text-gray-400 mb-10 max-w-2xl leading-relaxed font-light"
           >
             From result-driven marketing to smart business automation — we build the technology that helps your business grow in the digital era.
           </motion.p>
