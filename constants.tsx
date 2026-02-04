@@ -115,3 +115,38 @@ export const WHY_CHOOSE_US = [
   { title: 'Affordable & Scalable', text: 'Solutions that fit your budget and grow with you.' },
   { title: 'Dedicated Support', text: 'We are always just a call or message away.' },
 ];
+
+export const PROJECTS = [
+  {
+    id: 1,
+    title: "AgroMart India",
+    category: "E-Commerce App",
+    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=2574&auto=format&fit=crop",
+    tags: ["React Native", "Node.js", "Payment Gateway"],
+    description: "A bilingual grocery delivery app connecting local farmers directly to urban households."
+  },
+  {
+    id: 2,
+    title: "EduLearn LMS",
+    category: "Web Platform",
+    image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=2574&auto=format&fit=crop",
+    tags: ["React", "Firebase", "Live Streaming"],
+    description: "Comprehensive Learning Management System for coaching classes with attendance and test modules."
+  },
+  {
+    id: 3,
+    title: "MediCare ERP",
+    category: "Software",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2670&auto=format&fit=crop",
+    tags: ["Python", "SQL", "Dashboard"],
+    description: "Custom ERP solution for multi-specialty hospitals to manage patient records and billing offline & online."
+  },
+  {
+    id: 4,
+    title: "Urban Estate",
+    category: "Website",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=2573&auto=format&fit=crop",
+    tags: ["Next.js", "SEO", "Analytics"],
+    description: "High-conversion lead generation website for a premium real estate developer in Pune."
+  }
+];

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, Loader2, CheckCircle, XCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, Loader2, CheckCircle, XCircle, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Contact: React.FC = () => {
@@ -76,11 +76,11 @@ const Contact: React.FC = () => {
         >
           
           {/* Contact Info Side */}
-          <div className="lg:w-5/12 p-10 bg-black/40 text-white relative overflow-hidden">
+          <div className="lg:w-5/12 p-8 lg:p-10 bg-black/40 text-white relative overflow-hidden flex flex-col h-full">
             {/* Decorative Glow */}
              <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-secondary/20 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div className="relative z-10">
+            <div className="relative z-10 mb-8">
               <motion.h3 
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -95,7 +95,7 @@ const Contact: React.FC = () => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-gray-300 mb-10"
+                className="text-gray-300 mb-8"
               >
                 Ready to start your digital journey? Fill out the form, and our experts will contact you within 24 hours.
               </motion.p>
@@ -125,17 +125,52 @@ const Contact: React.FC = () => {
                 ))}
               </div>
             </div>
+
+            {/* Embedded Map */}
+            <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ delay: 0.7, duration: 0.6 }}
+               className="relative z-10 mt-auto"
+            >
+                <div className="rounded-xl overflow-hidden border border-white/20 h-48 bg-gray-800 shadow-lg relative group">
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        title="Office Location"
+                        src="https://maps.google.com/maps?q=Civil%20Line%2C%20Washim&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        style={{ filter: "grayscale(1) contrast(1.2) opacity(0.7)" }}
+                        className="w-full h-full border-0 group-hover:filter-none group-hover:opacity-100 transition-all duration-500"
+                        allowFullScreen
+                        loading="lazy"
+                    ></iframe>
+                     {/* Overlay for interaction hint */}
+                     <div className="absolute inset-0 pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black/10"></div>
+                </div>
+                <div className="mt-3 flex justify-end">
+                  <a 
+                    href="https://maps.app.goo.gl/BDMsL2Wnk77wEWjF7" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-xs font-medium text-secondary hover:text-white transition-colors"
+                  >
+                    <span>View on Google Maps</span>
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+            </motion.div>
             
-            {/* Abstract Circle */}
+            {/* Abstract Circle Background */}
             <motion.div 
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 4, repeat: Infinity }}
-              className="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary rounded-full opacity-10 blur-2xl"
+              className="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary rounded-full opacity-5 blur-3xl pointer-events-none"
             ></motion.div>
           </div>
 
           {/* Form Side */}
-          <div className="lg:w-7/12 p-10 bg-transparent">
+          <div className="lg:w-7/12 p-8 lg:p-10 bg-transparent">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>

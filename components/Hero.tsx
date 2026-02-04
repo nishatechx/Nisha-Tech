@@ -123,19 +123,6 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="w-full max-w-4xl"
         >
-          {/* Badge */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-secondary/30 rounded-full bg-secondary/10 backdrop-blur-md"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
-            </span>
-            <span className="text-secondary font-medium text-xs sm:text-sm tracking-wide uppercase">Trusted by 100+ Indian Businesses</span>
-          </motion.div>
           
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-8 text-white tracking-tight">
             <span className="block mb-2">
