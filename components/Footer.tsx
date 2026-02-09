@@ -12,8 +12,8 @@ const Footer: React.FC = () => {
           <div>
             <div className="mb-6">
               <img 
-                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnn6uP1sKhluLCr0Y9aPwlyiQZPDbSsJlAyVXAe9XwVwmtOdm4WWDoO2mBohFrJY9sGrWGZZnDZnqXjcGXcPpGAQSJWSDJch-Ns9Q_d41pag3IQuYJz42kzZxsarv0qFE958ExXHQNLgKeSTntdYNvfVUE1SFMDwiM5K5qzS3JkbWDN_dzru2gF_n0KUs/s16000/nisha%20tech%20studio%20logo.png" 
-                alt="NISHA TECH STUDIO" 
+                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPUPRZRHNJHMixNwd9_eVBwuDKXNNw5sMUowScagq8XN9tf-nQjL7E_jedkm40sPWXOxKrXsRLxpt4Z5iuumQhvfJgOHzCzZZop0P5M9_5ITqKChmlyL2bvzIA8Atnxrt1G-84gg7vCirAQ_RkXyCoz6GZpqWIYeZji8bPShE7plCJjfkYN39reeVgO7Q/s16000/Nisha%20Tech%20Solutions.png" 
+                alt="Nisha Tech Solutions" 
                 className="h-12 w-auto object-contain"
               />
             </div>
@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} NISHA TECH STUDIO. All rights reserved.
+            &copy; {new Date().getFullYear()} Nisha Tech Solutions. All rights reserved.
           </p>
           <div className="flex items-center gap-2 mt-4 md:mt-0">
              <span className="w-2 h-2 rounded-full bg-accent"></span>

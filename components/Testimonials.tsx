@@ -7,7 +7,7 @@ const TESTIMONIALS = [
     name: "Vikram Malhotra",
     role: "Director, Malhotra Polymers Pvt. Ltd.",
     location: "Aurangabad, MH",
-    content: "Factory ka production data pehle paper pe tha. NISHA TECH STUDIO ne jo ERP banaya, usse ab waste 15% kam ho gaya hai. Real-time tracking se efficiency badh gayi. Bilkul value for money kaam hai.",
+    content: "Factory ka production data pehle paper pe tha. Nisha Tech Solutions ne jo ERP banaya, usse ab waste 15% kam ho gaya hai. Real-time tracking se efficiency badh gayi. Bilkul value for money kaam hai.",
   },
   {
     name: "Priya Kulkarni",
@@ -37,7 +37,7 @@ const TESTIMONIALS = [
     name: "Mrs. Vandana Iyer",
     role: "Principal, Heritage Valley School",
     location: "Chennai, TN",
-    content: "The school app has bridged the gap between parents and teachers. Fee collection is now 100% digital, saving our admin staff hours of manual work every week. Excellent support from NISHA TECH STUDIO.",
+    content: "The school app has bridged the gap between parents and teachers. Fee collection is now 100% digital, saving our admin staff hours of manual work every week. Excellent support from Nisha Tech Solutions.",
   },
   {
     name: "Karthik Menon",

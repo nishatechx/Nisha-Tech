@@ -49,8 +49,8 @@ const Navbar: React.FC = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <img 
-              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnn6uP1sKhluLCr0Y9aPwlyiQZPDbSsJlAyVXAe9XwVwmtOdm4WWDoO2mBohFrJY9sGrWGZZnDZnqXjcGXcPpGAQSJWSDJch-Ns9Q_d41pag3IQuYJz42kzZxsarv0qFE958ExXHQNLgKeSTntdYNvfVUE1SFMDwiM5K5qzS3JkbWDN_dzru2gF_n0KUs/s16000/nisha%20tech%20studio%20logo.png" 
-              alt="NISHA TECH STUDIO" 
+              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPUPRZRHNJHMixNwd9_eVBwuDKXNNw5sMUowScagq8XN9tf-nQjL7E_jedkm40sPWXOxKrXsRLxpt4Z5iuumQhvfJgOHzCzZZop0P5M9_5ITqKChmlyL2bvzIA8Atnxrt1G-84gg7vCirAQ_RkXyCoz6GZpqWIYeZji8bPShE7plCJjfkYN39reeVgO7Q/s16000/Nisha%20Tech%20Solutions.png" 
+              alt="Nisha Tech Solutions" 
               className={`h-12 lg:h-14 w-auto object-contain transition-all duration-300 ${
                 showSolidNav ? 'brightness-0' : ''
               }`}

@@ -60,7 +60,7 @@ const WhyUs: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose NISHA TECH STUDIO?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Nisha Tech Solutions?</h2>
           <p className="max-w-2xl mx-auto text-gray-400">
             We combine global standards with local understanding to deliver solutions that actually work for Indian businesses.
           </p>

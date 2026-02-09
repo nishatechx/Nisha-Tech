@@ -70,19 +70,19 @@ const About: React.FC = () => {
           >
             <div className="flex items-center gap-2 mb-3">
                 <div className="h-1 w-10 bg-secondary rounded-full"></div>
-                <h4 className="text-secondary font-bold uppercase tracking-wider text-sm">About NISHA TECH STUDIO</h4>
+                <h4 className="text-secondary font-bold uppercase tracking-wider text-sm">About Nisha Tech Solutions</h4>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">Strategy. Design. Technology.</h2>
             
             <div className="space-y-5 text-gray-300 leading-relaxed mb-10 text-lg font-light">
               <p>
-                Nisha Tech Studio is a <span className="text-white font-medium">creative-technology studio</span> built to help businesses grow in a fast-moving digital world ⚡
+                Nisha Tech Solutions is a <span className="text-white font-medium">creative-technology studio</span> built to help businesses grow in a fast-moving digital world ⚡
               </p>
               <p>
                 We work at the intersection of strategy, design, and technology to create solutions that don’t just look good, but perform. Our services include digital marketing, website and software development, content creation, and business automation — all designed to improve visibility, efficiency, and scalability.
               </p>
               <p className="font-medium text-white border-l-4 border-secondary pl-4 bg-white/5 py-3 pr-2 rounded-r-lg">
-                At Nisha Tech Studio, technology is not an expense — it’s an energy that powers growth, innovation, and sustainability.
+                At Nisha Tech Solutions, technology is not an expense — it’s an energy that powers growth, innovation, and sustainability.
               </p>
             </div>
             
