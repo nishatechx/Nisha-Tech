@@ -15,10 +15,16 @@ import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   return (
-    <div className="min-h-screen bg-neutral text-gray-900 font-sans selection:bg-secondary selection:text-white">
+    <div className="min-h-screen bg-black text-white font-sans selection:bg-primary selection:text-black overflow-hidden relative">
+      {/* Global Background Glows */}
+      <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] mix-blend-screen opacity-30 animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-white/5 rounded-full blur-[100px] mix-blend-screen opacity-20" />
+      </div>
+
       <ScrollProgress />
       <Navbar />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <About />
         <Services />

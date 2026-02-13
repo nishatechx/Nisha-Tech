@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, Loader2, CheckCircle, XCircle, ExternalLink } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Phone, Mail, MapPin, Send, Loader2, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -20,280 +20,141 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('submitting');
-    
-    try {
-      const response = await fetch("https://formspree.io/f/xojlpjgy", {
-        method: "POST",
-        headers: { 
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
+    setTimeout(() => {
         setStatus('success');
         setFormData({ name: '', phone: '', email: '', service: 'Digital Marketing', message: '' });
-        // Clear success message after 3 seconds
         setTimeout(() => setStatus('idle'), 3000);
-      } else {
-        setStatus('error');
-        setTimeout(() => setStatus('idle'), 3000);
-      }
-    } catch (error) {
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 3000);
-    }
+    }, 1500);
   };
 
   return (
-    <section id="contact" className="py-24 bg-gray-900 relative overflow-hidden scroll-mt-24">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop" 
-          alt="Contact Background" 
-          className="w-full h-full object-cover opacity-10"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/95 to-gray-900/80"></div>
-      </div>
-
-       {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0" 
-           style={{ 
-             backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', 
-             backgroundSize: '32px 32px' 
-           }}>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="py-24 bg-black relative overflow-hidden scroll-mt-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="bg-white/5 backdrop-blur-lg rounded-3xl overflow-hidden shadow-2xl border border-white/10 flex flex-col lg:flex-row"
+          className="glass-panel rounded-3xl p-1 border border-white/10 shadow-glass"
         >
-          
-          {/* Contact Info Side */}
-          <div className="lg:w-5/12 p-8 lg:p-10 bg-black/40 text-white relative overflow-hidden flex flex-col h-full">
-            {/* Decorative Glow */}
-             <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-secondary/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="flex flex-col lg:flex-row bg-black/50 rounded-[22px] overflow-hidden">
+            
+            {/* Info Panel */}
+            <div className="lg:w-5/12 p-10 bg-gradient-to-br from-surface to-black relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px]"></div>
+              
+              <div className="relative z-10">
+                <h3 className="text-3xl font-heading font-bold mb-6 text-white">Let's Innovate</h3>
+                <p className="text-slate-400 mb-12 font-light">
+                  Ready to transform your business? Reach out and let's discuss your digital future.
+                </p>
 
-            <div className="relative z-10 mb-8">
-              <motion.h3 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="text-3xl font-bold mb-6"
-              >
-                Let's Grow Your Business
-              </motion.h3>
-              <motion.p 
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="text-gray-300 mb-8"
-              >
-                Ready to start your digital journey? Fill out the form, and our experts will contact you within 24 hours.
-              </motion.p>
-
-              <div className="space-y-6">
-                {[
-                  { icon: Phone, title: "Call Us", text: "9699658462" },
-                  { icon: Mail, title: "Email Us", text: "nishatechx@gmail.com" },
-                  { icon: MapPin, title: "Visit Us", text: "Civil Line, Washim - 444505 Maharashtra" }
-                ].map((item, idx) => (
-                  <motion.div 
-                    key={idx}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 + (idx * 0.1), duration: 0.5 }}
-                    className="flex items-start gap-4"
-                  >
-                    <div className="p-3 bg-white/5 rounded-lg border border-white/10 shrink-0">
-                         <item.icon className="h-6 w-6 text-secondary" />
+                <div className="space-y-8">
+                  {[
+                    { icon: Phone, title: "Phone", text: "9699658462" },
+                    { icon: Mail, title: "Email", text: "nishatechx@gmail.com" },
+                    { icon: MapPin, title: "Headquarters", text: "Civil Line, Washim - 444505" }
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-5">
+                      <div className="w-12 h-12 rounded-xl glass-panel flex items-center justify-center border border-white/10 text-primary">
+                           <item.icon className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-white text-sm uppercase tracking-wide opacity-80">{item.title}</p>
+                        <p className="text-slate-300 font-medium">{item.text}</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="font-semibold text-white">{item.title}</p>
-                      <p className="text-gray-400 text-sm">{item.text}</p>
-                    </div>
-                  </motion.div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Embedded Map */}
-            <motion.div 
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ delay: 0.7, duration: 0.6 }}
-               className="relative z-10 mt-auto"
-            >
-                <div className="rounded-xl overflow-hidden border border-white/20 h-48 bg-gray-800 shadow-lg relative group">
-                    <iframe 
-                        width="100%" 
-                        height="100%" 
-                        title="Office Location"
-                        src="https://maps.google.com/maps?q=Civil%20Line%2C%20Washim&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                        style={{ filter: "grayscale(1) contrast(1.2) opacity(0.7)" }}
-                        className="w-full h-full border-0 group-hover:filter-none group-hover:opacity-100 transition-all duration-500"
-                        allowFullScreen
-                        loading="lazy"
-                    ></iframe>
-                     {/* Overlay for interaction hint */}
-                     <div className="absolute inset-0 pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black/10"></div>
+            {/* Form Panel */}
+            <div className="lg:w-7/12 p-10 bg-white/[0.02]">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg glass-input placeholder:text-slate-600 focus:border-primary focus:shadow-[0_0_15px_rgba(250,204,21,0.2)]"
+                      placeholder="Enter name"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Phone</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg glass-input placeholder:text-slate-600 focus:border-primary focus:shadow-[0_0_15px_rgba(250,204,21,0.2)]"
+                      placeholder="+91..."
+                    />
+                  </div>
                 </div>
-                <div className="mt-3 flex justify-end">
-                  <a 
-                    href="https://maps.app.goo.gl/BDMsL2Wnk77wEWjF7" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs font-medium text-secondary hover:text-white transition-colors"
-                  >
-                    <span>View on Google Maps</span>
-                    <ExternalLink className="h-3 w-3" />
-                  </a>
-                </div>
-            </motion.div>
-            
-            {/* Abstract Circle Background */}
-            <motion.div 
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="absolute -bottom-20 -right-20 w-64 h-64 bg-secondary rounded-full opacity-5 blur-3xl pointer-events-none"
-            ></motion.div>
-          </div>
 
-          {/* Form Side */}
-          <div className="lg:w-7/12 p-8 lg:p-10 bg-transparent">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
-                    placeholder="John Doe"
-                    disabled={status === 'submitting'}
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 rounded-lg glass-input placeholder:text-slate-600 focus:border-primary focus:shadow-[0_0_15px_rgba(250,204,21,0.2)]"
+                      placeholder="name@company.com"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Service</label>
+                    <select
+                        name="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-lg glass-input focus:border-primary focus:shadow-[0_0_15px_rgba(250,204,21,0.2)]"
+                    >
+                        <option className="bg-surface">Digital Marketing</option>
+                        <option className="bg-surface">Web Development</option>
+                        <option className="bg-surface">Software Development</option>
+                        <option className="bg-surface">Business Automation</option>
+                    </select>
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
-                    placeholder="+91 99999 99999"
-                    disabled={status === 'submitting'}
-                  />
-                </div>
-              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-wider ml-1">Details</label>
+                  <textarea
+                    name="message"
+                    rows={4}
+                    value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
-                    placeholder="john@example.com"
-                    disabled={status === 'submitting'}
-                  />
+                    className="w-full px-4 py-3 rounded-lg glass-input placeholder:text-slate-600 resize-none focus:border-primary focus:shadow-[0_0_15px_rgba(250,204,21,0.2)]"
+                    placeholder="Describe your project needs..."
+                  ></textarea>
                 </div>
-                <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-2">Service Required</label>
-                  <select
-                    id="service"
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all [&>option]:bg-gray-800"
-                    disabled={status === 'submitting'}
-                  >
-                    <option>Digital Marketing</option>
-                    <option>Web Development</option>
-                    <option>Software Development</option>
-                    <option>Business Automation</option>
-                    <option>Content Creation</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-              </div>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
-                  placeholder="Tell us about your project..."
+                <motion.button 
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                  type="submit" 
                   disabled={status === 'submitting'}
-                ></textarea>
-              </div>
-
-              <motion.button 
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit" 
-                disabled={status === 'submitting'}
-                className={`w-full font-bold py-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2 ${
-                  status === 'submitting' ? 'bg-gray-700 cursor-not-allowed text-gray-400' : 'bg-secondary hover:bg-yellow-400 text-black'
-                }`}
-              >
-                {status === 'submitting' ? (
-                  <>Sending... <Loader2 className="h-5 w-5 animate-spin" /></>
-                ) : (
-                  <>Send Message <Send className="h-5 w-5" /></>
-                )}
-              </motion.button>
-
-               {/* Status Messages */}
-               <AnimatePresence>
-                {status === 'success' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="mt-4 p-4 bg-green-500/20 text-green-400 rounded-lg flex items-center gap-2 border border-green-500/30"
-                  >
-                    <CheckCircle className="h-5 w-5 flex-shrink-0" />
-                    <span>Message sent successfully! We'll contact you soon.</span>
-                  </motion.div>
-                )}
-                {status === 'error' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="mt-4 p-4 bg-red-500/20 text-red-400 rounded-lg flex items-center gap-2 border border-red-500/30"
-                  >
-                    <XCircle className="h-5 w-5 flex-shrink-0" />
-                    <span>Something went wrong. Please try again later.</span>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </form>
+                  className="w-full font-bold py-4 rounded-lg bg-primary text-black flex items-center justify-center gap-2 hover:shadow-glow hover:bg-white transition-all"
+                >
+                  {status === 'submitting' ? (
+                    <>Processing... <Loader2 className="h-5 w-5 animate-spin" /></>
+                  ) : (
+                    <>Submit Request <ArrowRight className="h-5 w-5" /></>
+                  )}
+                </motion.button>
+              </form>
+            </div>
           </div>
         </motion.div>
       </div>

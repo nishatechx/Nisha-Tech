@@ -3,9 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nisha Tech Solutions | Software, Web & Digital Solutions</title>
-    <meta name="description" content="Nisha Tech Solutions provides software development, website design, web applications, automation, and digital marketing solutions for Indian businesses and institutions." />
+    <title>Nisha Tech Solutions | Premium Digital Engineering</title>
+    <meta name="description" content="Nisha Tech Solutions provides high-end software development, AI automation, and digital transformation for global enterprises." />
     <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhH7gM8xm_qd-rc1wad99HtayjAqqNGJAToztmh4qpB14zuQSSQGlPSf-RYMQbik9aW5wjas8Ws1yyNyAzNQZ_tJ9uzmcLaTXJ63NT6gIZOAfy3KDZskYYCUNqs6Oi0VfMNklQs-x2_TiEfEpqPq7i8vck_XRhaD7VoLHFT1fpwo4VfVb3dkIFShxvn7vw/s16000/Nisha%20Tech%20Studio%20Favicon.png" type="image/png">
+    
+    <!-- Fonts: Outfit for Headings, Inter for Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,39 +19,25 @@
         theme: {
           extend: {
             colors: {
-              primary: '#000000', // Black
-              secondary: '#ffcf00', // Yellow / Gold
-              accent: '#ffcf00', // Yellow
-              neutral: '#ffffff', // White
+              background: '#000000', // Pure Black
+              surface: '#111111', // Almost Black
+              primary: '#FACC15', // Bright Yellow
+              secondary: '#FFFFFF', // White
+              accent: '#FEF08A', // Pale Yellow
+              glass: 'rgba(255, 255, 255, 0.05)',
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
+              heading: ['Outfit', 'sans-serif'],
             },
-            animation: {
-              'gradient-x': 'gradient-x 4s ease infinite',
-              'scroll': 'scroll 40s linear infinite',
-              'logo-pulse': 'logo-pulse 3s ease-in-out infinite',
+            backgroundImage: {
+              'glass-gradient': 'linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
             },
-            keyframes: {
-              'gradient-x': {
-                '0%, 100%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'left center'
-                },
-                '50%': {
-                  'background-size': '200% 200%',
-                  'background-position': 'right center'
-                },
-              },
-              'scroll': {
-                '0%': { transform: 'translateX(0)' },
-                '100%': { transform: 'translateX(-100%)' },
-              },
-              'logo-pulse': {
-                '0%, 100%': { color: '#ffcf00' }, 
-                '50%': { color: '#ffffff', textShadow: '0 0 15px rgba(255, 207, 0, 0.4)' },
-              },
-            },
+            boxShadow: {
+              'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+              'glow': '0 0 20px rgba(250, 204, 21, 0.4)',
+              'neon': '0 0 10px rgba(250, 204, 21, 0.6), 0 0 20px rgba(250, 204, 21, 0.3)',
+            }
           },
         },
       }
@@ -55,8 +47,57 @@
         scroll-behavior: smooth;
       }
       body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background-color: #000000;
+        color: #ffffff;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
       }
+      
+      /* Premium Glassmorphism Utility Classes */
+      .glass-panel {
+        background: rgba(20, 20, 20, 0.6);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .glass-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      .glass-card:hover {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+        border-color: #FACC15;
+        box-shadow: 0 10px 40px -10px rgba(250, 204, 21, 0.2);
+        transform: translateY(-5px);
+      }
+
+      .glass-input {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+        transition: all 0.3s ease;
+      }
+
+      .glass-input:focus {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #FACC15;
+        box-shadow: 0 0 15px rgba(250, 204, 21, 0.2);
+        outline: none;
+      }
+      
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #000000; }
+      ::-webkit-scrollbar-thumb { background: #333333; border-radius: 10px; }
+      ::-webkit-scrollbar-thumb:hover { background: #FACC15; }
     </style>
   <script type="importmap">
 {

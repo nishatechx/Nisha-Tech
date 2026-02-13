@@ -17,14 +17,10 @@ const Navbar: React.FC = () => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setIsOpen(false);
-    
-    // Smooth scroll logic ensuring correct offset
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
-    
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      // Update browser history without jumping
       window.history.pushState(null, '', href);
     } else if (href === '#home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -32,54 +28,58 @@ const Navbar: React.FC = () => {
     }
   };
 
-  // Determine if the navbar should have a solid background (White)
-  // This happens if the user scrolls OR if the mobile menu is open
-  const showSolidNav = scrolled || isOpen;
-
   return (
     <nav 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        showSolidNav ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out flex justify-center ${scrolled ? 'py-4' : 'py-6'}`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className={`
+        relative px-6 rounded-full transition-all duration-500
+        ${scrolled 
+          ? 'w-[90%] max-w-7xl glass-panel shadow-glass border border-white/10 bg-black/40' 
+          : 'w-full max-w-7xl bg-transparent border-transparent'
+        }
+      `}>
+        <div className="flex justify-between items-center h-14">
+          
+          {/* Logo */}
           <div 
-            className="flex-shrink-0 flex items-center cursor-pointer" 
+            className="flex-shrink-0 flex items-center cursor-pointer group" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
-            <img 
-              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPUPRZRHNJHMixNwd9_eVBwuDKXNNw5sMUowScagq8XN9tf-nQjL7E_jedkm40sPWXOxKrXsRLxpt4Z5iuumQhvfJgOHzCzZZop0P5M9_5ITqKChmlyL2bvzIA8Atnxrt1G-84gg7vCirAQ_RkXyCoz6GZpqWIYeZji8bPShE7plCJjfkYN39reeVgO7Q/s16000/Nisha%20Tech%20Solutions.png" 
-              alt="Nisha Tech Solutions" 
-              className={`h-12 lg:h-14 w-auto object-contain transition-all duration-300 ${
-                showSolidNav ? 'brightness-0' : ''
-              }`}
-            />
+             <img 
+               src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPUPRZRHNJHMixNwd9_eVBwuDKXNNw5sMUowScagq8XN9tf-nQjL7E_jedkm40sPWXOxKrXsRLxpt4Z5iuumQhvfJgOHzCzZZop0P5M9_5ITqKChmlyL2bvzIA8Atnxrt1G-84gg7vCirAQ_RkXyCoz6GZpqWIYeZji8bPShE7plCJjfkYN39reeVgO7Q/s16000/Nisha%20Tech%20Solutions.png" 
+               alt="Nisha Tech Solutions" 
+               className="h-12 w-auto object-contain"
+             />
           </div>
           
-          {/* Desktop/Laptop Menu - Visible on lg screens and up */}
-          <div className="hidden lg:flex space-x-6 xl:space-x-8">
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex space-x-1">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className={`text-sm font-medium transition-colors hover:text-secondary ${
-                  showSolidNav ? 'text-primary' : 'text-gray-200'
-                }`}
+                className="px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-primary hover:bg-white/5 transition-all relative group overflow-hidden"
               >
-                {item.label}
+                <span className="relative z-10">{item.label}</span>
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </a>
             ))}
           </div>
 
-          {/* Mobile/Tablet Menu Button - Visible on md screens and down */}
+          {/* Call to Action (Desktop) */}
+          <div className="hidden lg:block">
+             <a href="#contact" className="px-5 py-2 rounded-full bg-primary hover:bg-white text-black text-sm font-bold transition-all shadow-glow hover:shadow-white/20">
+               Get Started
+             </a>
+          </div>
+
+          {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none ${
-                showSolidNav ? 'text-primary' : 'text-white' 
-              }`}
+              className="p-2 rounded-full hover:bg-white/10 text-white transition-colors focus:outline-none"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -87,20 +87,23 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile/Tablet Menu Dropdown */}
+      {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="lg:hidden bg-white shadow-lg absolute w-full top-full left-0 border-t border-gray-100">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[90%] glass-panel rounded-2xl p-4 lg:hidden border border-white/10 z-50 animate-fadeIn">
+          <div className="flex flex-col space-y-2">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="block px-3 py-4 rounded-md text-base font-medium text-primary hover:text-secondary hover:bg-gray-50 border-b border-gray-50 last:border-0"
+                className="block px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5 hover:text-primary hover:pl-6 transition-all"
               >
                 {item.label}
               </a>
             ))}
+             <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="mt-4 block px-4 py-3 rounded-xl bg-primary text-center text-black font-bold shadow-glow">
+               Get Started
+             </a>
           </div>
         </div>
       )}
