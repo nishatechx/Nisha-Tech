@@ -56,6 +56,21 @@ const ServiceCard: React.FC<{ service: ServiceItem; variants: Variants }> = ({ s
       >
         {service.title}
       </h4>
+      {service.image && (
+        <div 
+          style={{ transform: "translateZ(35px)" }}
+          className="relative h-40 rounded-xl overflow-hidden mb-6 border border-border/50"
+        >
+          <img 
+            src={service.image} 
+            alt={service.title}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            referrerPolicy="no-referrer"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-500"></div>
+        </div>
+      )}
       <p 
         style={{ transform: "translateZ(30px)" }}
         className="text-muted text-sm leading-relaxed mb-8 font-light"
@@ -96,17 +111,18 @@ const Services: React.FC = () => {
   };
 
   return (
-    <section id="services" className="py-24 bg-surface perspective-2000">
+    <section id="services" className="py-16 sm:py-24 bg-surface perspective-2000">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="text-center mb-20"
+          className="text-center mb-16 lg:mb-20"
         >
-          <motion.h2 variants={itemVariants} className="text-[10px] font-bold text-accent tracking-[0.3em] uppercase mb-6">
-            Our Services
+          <motion.div variants={itemVariants} className="narrative-label">Chapter 2: The Craft</motion.div>
+          <motion.h2 variants={itemVariants} className="text-[10px] font-bold text-muted/60 tracking-[0.3em] uppercase mb-6">
+            Expert Solutions
           </motion.h2>
           <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-heading font-bold text-primary mb-8 tracking-tight">
             Complete Digital Solutions — All in One Place

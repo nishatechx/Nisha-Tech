@@ -9,18 +9,21 @@ const Portfolio: React.FC = () => {
       category: 'ERP & Automation',
       description: 'Smart systems to manage operations efficiently for schools, colleges, and offices.',
       icon: Database,
+      image: 'https://images.unsplash.com/photo-1551288049-bbbda536ad37?auto=format&fit=crop&q=80&w=800', // Dashboard/ERP
     },
     {
       title: 'Web Platforms',
       category: 'Web Development',
       description: 'Modern, fast, and responsive websites and portals designed to perform.',
       icon: Globe,
+      image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&q=80&w=800', // Web Design layout
     },
     {
       title: 'Custom Software',
       category: 'Software Engineering',
       description: 'Bespoke software solutions built exactly for unique business needs.',
       icon: Code2,
+      image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&q=80&w=800', // Programming/Code
     },
   ];
 
@@ -47,17 +50,18 @@ const Portfolio: React.FC = () => {
   };
 
   return (
-    <section id="portfolio" className="py-24 bg-white perspective-2000">
+    <section id="portfolio" className="py-16 sm:py-24 bg-white perspective-2000">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="text-center mb-20 preserve-3d"
+          className="text-center mb-16 lg:mb-20 preserve-3d"
         >
-          <motion.h2 variants={itemVariants} className="text-[10px] font-bold text-accent tracking-[0.3em] uppercase mb-6 backface-hidden">
-            Our Work
+          <motion.div variants={itemVariants} className="narrative-label">Chapter 4: The Impact</motion.div>
+          <motion.h2 variants={itemVariants} className="text-[10px] font-bold text-muted/60 tracking-[0.3em] uppercase mb-6 backface-hidden">
+            Recent Projects
           </motion.h2>
           <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-heading font-bold text-primary mb-8 tracking-tight backface-hidden">
             Proven Digital Solutions
@@ -87,9 +91,15 @@ const Portfolio: React.FC = () => {
               }}
               className="group border border-border overflow-hidden bg-surface rounded-2xl hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 preserve-3d backface-hidden"
             >
-              <div className="aspect-video overflow-hidden relative bg-primary/5 flex items-center justify-center">
-                <project.icon className="w-20 h-20 text-primary/10 group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+              <div className="aspect-video overflow-hidden relative bg-primary/5">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 group-hover:opacity-80"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-primary/20 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                   <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-xl transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     <ExternalLink className="w-5 h-5 text-primary" />
                   </div>

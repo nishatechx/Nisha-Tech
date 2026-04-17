@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-dark antialiased overflow-x-hidden font-sans;
+  }
+}
+
+@layer components {
+  .section-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8;
+  }
+
+  .card-professional {
+    @apply bg-white border border-border p-6 sm:p-10 rounded-2xl transition-all duration-500;
+  }
+
+  .card-professional:hover {
+    @apply -translate-y-1.5 border-accent shadow-hover;
+  }
+
+  .btn-hover-effect {
+    @apply transition-transform duration-300 hover:scale-[1.03] active:scale-[0.98];
+  }
+
+  .narrative-label {
+    @apply text-[10px] font-bold uppercase tracking-[0.4em] text-accent block mb-6;
+  }
+
+  .journey-line {
+    @apply absolute left-1/2 w-px h-[60px] sm:h-[100px] bg-gradient-to-b from-accent to-transparent -translate-x-1/2 z-10;
+  }
+}
+
+/* 3D Helpers */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.perspective-1000 {
+  perspective: 1000px;
+}
+.perspective-2000 {
+  perspective: 2000px;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f8fafc; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #0B3C8A; }

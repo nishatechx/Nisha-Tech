@@ -21,11 +21,17 @@ function App() {
       
       <main className="relative z-10">
         <Hero />
+        <div className="journey-line"></div>
         <About />
+        <div className="journey-line"></div>
         <Services />
+        <div className="journey-line"></div>
         <WhyUs />
+        <div className="journey-line"></div>
         <Portfolio />
+        <div className="journey-line"></div>
         <Process />
+        <div className="journey-line"></div>
         <CTABanner />
         <Contact />
       </main>

@@ -25,9 +25,9 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white perspective-2000">
+    <section id="contact" className="py-16 sm:py-24 bg-white perspective-2000">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
           
           {/* Contact Info */}
           <motion.div
@@ -37,8 +37,9 @@ const Contact: React.FC = () => {
             viewport={{ once: true, margin: "-100px" }}
             className="preserve-3d"
           >
-            <motion.h2 variants={itemVariants} className="text-[10px] font-bold text-accent tracking-[0.3em] uppercase mb-6 backface-hidden">
-              Contact Us
+            <motion.div variants={itemVariants} className="narrative-label">The Next Chapter</motion.div>
+            <motion.h2 variants={itemVariants} className="text-[10px] font-bold text-muted/60 tracking-[0.3em] uppercase mb-6 backface-hidden">
+              Get in Touch
             </motion.h2>
             <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-heading font-bold text-primary mb-10 leading-[1.15] tracking-tight backface-hidden">
               Let’s build something <br/>
@@ -49,8 +50,23 @@ const Contact: React.FC = () => {
             </motion.p>
  
             <div className="space-y-10 preserve-3d">
+              {/* Added Image for extra visual storytelling */}
+              <motion.div variants={itemVariants} className="relative h-48 rounded-2xl overflow-hidden border border-border group mb-12">
+                <img 
+                  src="https://images.unsplash.com/photo-1540317580114-ed684c054c95?auto=format&fit=crop&q=80&w=800" 
+                  alt="Indian Professional Support"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s]"
+                  referrerPolicy="no-referrer"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-primary/20 backdrop-blur-[1px]"></div>
+                <div className="absolute bottom-4 left-6">
+                  <span className="text-white text-[10px] font-bold uppercase tracking-[0.2em] bg-accent px-3 py-1 rounded-full">Available Now</span>
+                </div>
+              </motion.div>
+
               {[
-                { icon: Phone, title: 'Phone', value: '+91 95035 50351' },
+                { icon: Phone, title: 'Phone', value: '+91 96996 58462' },
                 { icon: Mail, title: 'Email', value: 'info@nishatech.in' },
                 { icon: MapPin, title: 'Location', value: 'Washim, Maharashtra, India' },
               ].map((item, i) => (

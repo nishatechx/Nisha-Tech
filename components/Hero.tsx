@@ -3,9 +3,6 @@ import { motion } from 'framer-motion';
 import { 
   ArrowRight, 
   ShieldCheck,
-  Code2,
-  FileText,
-  Users,
   CheckCircle2,
   Layers,
   Cpu
@@ -78,23 +75,28 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,1)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
+          className="text-center max-w-4xl mx-auto"
         >
-          <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-heading font-bold text-white mb-8 leading-[1.1] tracking-tight min-h-[1.2em]">
+          <motion.div variants={itemVariants} className="mb-6">
+            <span className="text-accent text-[10px] font-bold uppercase tracking-[0.4em]">The Digital Journey Begins</span>
+          </motion.div>
+          
+          <motion.h1 variants={itemVariants} className="text-4xl sm:text-6xl lg:text-8xl font-heading font-bold text-white mb-8 leading-[1.1] tracking-tight min-h-[1.2em]">
             Let's <span className="text-accent">
               <Typewriter words={["Build.", "Grow.", "Automate.", "Innovate."]} delay={800} speed={100} />
             </span>
           </motion.h1>
 
-          <motion.p variants={itemVariants} className="text-lg md:text-xl text-white/70 mb-10 max-w-xl leading-relaxed font-light">
+          <motion.p variants={itemVariants} className="text-base sm:text-lg lg:text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed font-light">
             Your complete partner for digital solutions. We design and build powerful digital systems, websites, and marketing strategies.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="space-y-4 mb-10">
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-10">
             {[
               "Websites & Software",
               "Digital Marketing",
@@ -107,11 +109,11 @@ const Hero: React.FC = () => {
             ))}
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-5">
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-5 justify-center">
             <a 
               href="#contact" 
               onClick={(e) => handleSmoothScroll(e, 'contact')}
-              className="px-8 py-4 bg-accent text-white font-bold rounded-lg btn-hover-effect transition-all flex items-center justify-center gap-2 shadow-2xl shadow-accent/20"
+              className="px-10 py-5 bg-accent text-white font-bold rounded-lg btn-hover-effect transition-all flex items-center justify-center gap-2 shadow-2xl shadow-accent/20"
             >
               Start Your Project
               <ArrowRight className="w-5 h-5" />
@@ -119,14 +121,14 @@ const Hero: React.FC = () => {
             <a 
               href="#services" 
               onClick={(e) => handleSmoothScroll(e, 'services')}
-              className="px-8 py-4 border border-white/20 text-white font-bold rounded-lg hover:bg-white/5 btn-hover-effect transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
+              className="px-10 py-5 border border-white/20 text-white font-bold rounded-lg hover:bg-white/5 btn-hover-effect transition-all flex items-center justify-center gap-2 backdrop-blur-sm"
             >
               View Services
             </a>
           </motion.div>
 
           {/* Trust Strip */}
-          <motion.div variants={itemVariants} className="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center gap-10 text-white/50">
+          <motion.div variants={itemVariants} className="mt-16 pt-8 border-t border-white/10 flex flex-wrap justify-center items-center gap-10 text-white/50">
             <div className="flex items-center gap-2.5 group">
               <ShieldCheck className="w-5 h-5 text-accent/60 group-hover:text-accent transition-colors" />
               <span className="font-bold uppercase tracking-[0.2em] text-[9px]">Secure</span>
@@ -137,43 +139,9 @@ const Hero: React.FC = () => {
             </div>
             <div className="flex items-center gap-2.5 group">
               <Cpu className="w-5 h-5 text-accent/60 group-hover:text-accent transition-colors" />
-              <span className="font-bold uppercase tracking-[0.2em] text-[9px]">Support</span>
+              <span className="font-bold uppercase tracking-[0.2em] text-[10px]">Support</span>
             </div>
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, x: 30, rotateY: -20, rotateX: 10 }}
-          animate={{ opacity: 1, scale: 1, x: 0, rotateY: -10, rotateX: 5 }}
-          whileHover={{ 
-            rotateY: 0, 
-            rotateX: 0, 
-            scale: 1.02,
-            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
-          }}
-          transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
-          className="hidden lg:block relative preserve-3d"
-          style={{ perspective: 2000 }}
-        >
-          <div className="relative z-10 bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-2xl shadow-2xl transform-gpu">
-            <div className="grid grid-cols-2 gap-6">
-              {[
-                { label: 'Security', icon: ShieldCheck, value: 'High-Trust' },
-                { label: 'Architecture', icon: Code2, value: 'Scalable' },
-                { label: 'Compliance', icon: FileText, value: 'Verified' },
-                { label: 'Support', icon: Users, value: '24/7' },
-              ].map((item, i) => (
-                <div key={i} className="p-6 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-colors duration-500">
-                  <item.icon className="w-8 h-8 text-white mb-4 opacity-60" />
-                  <div className="text-white/60 text-xs uppercase tracking-wider mb-1">{item.label}</div>
-                  <div className="text-white font-bold">{item.value}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* Decorative Glow */}
-          <div className="absolute -top-20 -right-20 w-64 h-64 bg-accent/20 rounded-full blur-[100px] -z-10"></div>
-          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-primary/30 rounded-full blur-[100px] -z-10"></div>
         </motion.div>
       </div>
     </section>

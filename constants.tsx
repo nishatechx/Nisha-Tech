@@ -42,6 +42,7 @@ export const SERVICES: ServiceItem[] = [
     title: 'ERP & Management Systems',
     description: 'Smart systems to manage operations efficiently. School & college systems, office management, and student & staff tracking.',
     icon: Database,
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: 'digital-marketing',

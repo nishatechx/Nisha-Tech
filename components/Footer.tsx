@@ -22,7 +22,7 @@ const Footer: React.FC = () => {
           <div className="space-y-8">
             <div className="flex items-center group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
               <img 
-                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhw_-75SOtpSirjw8W4nm_bKirT2otHIRVRhUz2J29G-1bWDopIjW4bjUEnO1A6B2hRU3Lq5YXahJcglT8wWuv6AXQbjr5Z706pu0XD1Z8XxfrPjcaXUz90O2SRr7TSUMGonkp0GLYh_BdVhYPQwbtj36vsNbbGMq7ajUMDp3QcpMY3bWl1vRD2-Wc17wM/s16000/Nisha%20Tech%20Solutions%20Logo.png" 
+                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiXu7LI-owiEtFLdj5e2u_gxWrLEMp90BeFBnx1TSbUWT-JQih3hyphenhyphenqzs-TPnRmnMreTdCHx5I-mFsvJzFY3m0X-kTeqTUvvMcwYVPEO7vuta1P4ydDmwbdSh6_C-5662hifO3QDQ4gesu2OirBnlCU8YJXGhsBcj8TcgKmKQCkUczxebqv3U8YUvzjJlMg/s16000/Nisha%20Tech%20Solutions%20Logo.png" 
                 alt="Nisha Tech Solutions Logo" 
                 className="h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 referrerPolicy="no-referrer"
@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-6">
               <li className="group">
                 <span className="block text-white/30 text-[9px] uppercase font-bold tracking-[0.2em] mb-2">Phone</span>
-                <span className="text-white font-medium group-hover:text-accent transition-colors">+91 95035 50351</span>
+                <span className="text-white font-medium group-hover:text-accent transition-colors">+91 96996 58462</span>
               </li>
               <li className="group">
                 <span className="block text-white/30 text-[9px] uppercase font-bold tracking-[0.2em] mb-2">Email</span>

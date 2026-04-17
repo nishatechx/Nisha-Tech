@@ -37,8 +37,9 @@ const Process: React.FC = () => {
           variants={containerVariants}
           className="text-center mb-24 preserve-3d"
         >
-          <motion.h2 variants={itemVariants} className="text-[10px] font-bold text-accent tracking-[0.3em] uppercase mb-6 backface-hidden">
-            Our Approach
+          <motion.div variants={itemVariants} className="narrative-label">Chapter 5: The Roadmap</motion.div>
+          <motion.h2 variants={itemVariants} className="text-[10px] font-bold text-muted/60 tracking-[0.3em] uppercase mb-6 backface-hidden">
+            Our Workflow
           </motion.h2>
           <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-heading font-bold text-primary mb-8 tracking-tight backface-hidden">
             Simple Process. Powerful Results.
@@ -81,8 +82,13 @@ const Process: React.FC = () => {
                 variants={itemVariants}
                 className="relative bg-white p-10 pt-14 rounded-2xl text-center group hover:-translate-y-2 transition-all duration-500 shadow-card hover:shadow-2xl hover:shadow-primary/5 border border-transparent hover:border-primary/10 backface-hidden"
               >
+                {/* Number Overlay */}
+                <div className="absolute top-4 right-6 text-6xl font-heading font-black text-primary/[0.03] select-none group-hover:text-primary/[0.07] transition-colors duration-500">
+                  {index + 1}
+                </div>
+                
                 {/* Number Orb */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white border-4 border-surface shadow-xl flex items-center justify-center group-hover:border-primary transition-all duration-500 z-10">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white border-4 border-surface shadow-xl flex items-center justify-center group-hover:border-primary group-hover:scale-110 transition-all duration-500 z-10">
                     <span className="text-lg font-bold text-primary">{index + 1}</span>
                 </div>
                 

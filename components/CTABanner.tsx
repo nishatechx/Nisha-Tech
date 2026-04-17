@@ -4,13 +4,13 @@ import { ArrowRight } from 'lucide-react';
 
 const CTABanner: React.FC = () => {
   return (
-    <section className="py-24 bg-primary relative overflow-hidden">
+    <section className="py-16 sm:py-24 bg-primary relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-accent/5 skew-x-12 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-white/5 rounded-full blur-[120px] -translate-x-1/2 translate-y-1/2"></div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
