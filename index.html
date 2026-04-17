@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nisha Tech Solutions | Premium Digital Engineering</title>
-    <meta name="description" content="Nisha Tech Solutions provides high-end software development, AI automation, and digital transformation for global enterprises." />
-    <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhH7gM8xm_qd-rc1wad99HtayjAqqNGJAToztmh4qpB14zuQSSQGlPSf-RYMQbik9aW5wjas8Ws1yyNyAzNQZ_tJ9uzmcLaTXJ63NT6gIZOAfy3KDZskYYCUNqs6Oi0VfMNklQs-x2_TiEfEpqPq7i8vck_XRhaD7VoLHFT1fpwo4VfVb3dkIFShxvn7vw/s16000/Nisha%20Tech%20Studio%20Favicon.png" type="image/png">
+    <title>Nisha Tech Solutions | Trusted IT Partner for Government & Enterprises</title>
+    <meta name="description" content="Nisha Tech Solutions provides secure, scalable, and compliant digital solutions including software development, ERP systems, and e-governance for government and institutional initiatives across India." />
+    <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhw_-75SOtpSirjw8W4nm_bKirT2otHIRVRhUz2J29G-1bWDopIjW4bjUEnO1A6B2hRU3Lq5YXahJcglT8wWuv6AXQbjr5Z706pu0XD1Z8XxfrPjcaXUz90O2SRr7TSUMGonkp0GLYh_BdVhYPQwbtj36vsNbbGMq7ajUMDp3QcpMY3bWl1vRD2-Wc17wM/s16000/Nisha%20Tech%20Solutions%20Logo.png" type="image/png">
     
-    <!-- Fonts: Outfit for Headings, Inter for Body -->
+    <!-- Fonts: Inter for Body, Outfit for Headings -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,24 +19,26 @@
         theme: {
           extend: {
             colors: {
-              background: '#000000', // Pure Black
-              surface: '#111111', // Almost Black
-              primary: '#FACC15', // Bright Yellow
-              secondary: '#FFFFFF', // White
-              accent: '#FEF08A', // Pale Yellow
-              glass: 'rgba(255, 255, 255, 0.05)',
+              background: '#FFFFFF', 
+              surface: '#F8FAFC',
+              primary: '#0B3C8A', // Deep Academic Blue
+              secondary: '#1F3C88', // Secondary Blue
+              accent: '#F97316', // Accent Orange
+              success: '#22C55E', // Success Green
+              dark: '#111827', // Primary Text
+              muted: '#6B7280', // Secondary Text
+              border: '#E2E8F0',
             },
             fontFamily: {
               sans: ['Inter', 'sans-serif'],
               heading: ['Outfit', 'sans-serif'],
             },
             backgroundImage: {
-              'glass-gradient': 'linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
+              'hero-gradient': 'linear-gradient(135deg, #0B3C8A 0%, #1F3C88 100%)',
             },
             boxShadow: {
-              'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-              'glow': '0 0 20px rgba(250, 204, 21, 0.4)',
-              'neon': '0 0 10px rgba(250, 204, 21, 0.6), 0 0 20px rgba(250, 204, 21, 0.3)',
+              'card': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+              'hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
             }
           },
         },
@@ -47,57 +49,71 @@
         scroll-behavior: smooth;
       }
       body {
-        background-color: #000000;
-        color: #ffffff;
+        background-color: #FFFFFF;
+        color: #111827;
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
       }
       
-      /* Premium Glassmorphism Utility Classes */
-      .glass-panel {
-        background: rgba(20, 20, 20, 0.6);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+      .section-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
       }
 
-      .glass-card {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      .card-professional {
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
+        padding: 2.5rem;
+        border-radius: 1rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      .glass-card:hover {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
-        border-color: #FACC15;
-        box-shadow: 0 10px 40px -10px rgba(250, 204, 21, 0.2);
+      .card-professional:hover {
         transform: translateY(-5px);
+        border-color: #F97316;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
       }
 
-      .glass-input {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+      .btn-hover-effect {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .btn-hover-effect:hover {
+        transform: scale(1.03);
+      }
+
+      .btn-primary {
+        background-color: #1F3C88;
         color: white;
-        transition: all 0.3s ease;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        transition: background-color 0.2s;
       }
 
-      .glass-input:focus {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: #FACC15;
-        box-shadow: 0 0 15px rgba(250, 204, 21, 0.2);
-        outline: none;
+      .btn-primary:hover {
+        background-color: #0B3C8A;
+      }
+
+      /* 3D Helpers */
+      .preserve-3d {
+        transform-style: preserve-3d;
+      }
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .perspective-2000 {
+        perspective: 2000px;
+      }
+      .backface-hidden {
+        backface-visibility: hidden;
       }
       
       /* Scrollbar */
-      ::-webkit-scrollbar { width: 6px; }
-      ::-webkit-scrollbar-track { background: #000000; }
-      ::-webkit-scrollbar-thumb { background: #333333; border-radius: 10px; }
-      ::-webkit-scrollbar-thumb:hover { background: #FACC15; }
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #F1F5F9; }
+      ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: #0B3C8A; }
     </style>
   <script type="importmap">
 {

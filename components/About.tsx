@@ -1,96 +1,94 @@
 import React from 'react';
-import { CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Code2, CheckCircle2 } from 'lucide-react';
 
 const About: React.FC = () => {
-  return (
-    <section id="about" className="py-32 relative overflow-hidden scroll-mt-24">
-      
-      {/* Background Grid */}
-      <div className="absolute inset-0 bg-black">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-20"></div>
-      </div>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
+  };
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 60, rotateX: 15 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      rotateX: 0,
+      transition: { duration: 1, ease: [0.22, 1, 0.36, 1] }
+    }
+  };
+
+  return (
+    <section id="about" className="py-24 bg-white relative overflow-hidden perspective-2000">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-20">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <motion.div 
-            initial={{ opacity: 0, x: -50, rotateY: 10 }}
-            whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1 }}
-            className="lg:w-1/2 relative perspective-1000"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="preserve-3d"
           >
-            {/* Glass Card Container */}
-            <div className="relative rounded-2xl p-2 glass-panel shadow-[0_0_50px_rgba(250,204,21,0.1)]">
-              <div className="relative rounded-xl overflow-hidden aspect-[4/3]">
-                <img 
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" 
-                  alt="Team Collaboration" 
-                  className="w-full h-full object-cover transition-all duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-              </div>
-            </div>
+            <motion.h2 variants={itemVariants} className="text-[10px] font-bold text-accent tracking-[0.3em] uppercase mb-6 backface-hidden">
+              About Us
+            </motion.h2>
             
-            {/* Floating Glass Stat */}
-            <motion.div 
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-8 -right-8 glass-card p-6 rounded-2xl border border-white/10 hidden md:block"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 text-black">
-                  <CheckCircle2 className="h-6 w-6" />
-                </div>
-                <div>
-                  <p className="text-3xl font-heading font-bold text-white">5+</p>
-                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Years of Excellence</p>
-                </div>
+            <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-heading font-bold text-primary mb-10 leading-[1.15] tracking-tight backface-hidden">
+              Technology That <br/>
+              Works for You.
+            </motion.h3>
+            
+            <motion.div variants={itemVariants} className="space-y-8 text-muted leading-relaxed font-light text-lg backface-hidden">
+              <p>
+                <span className="text-primary font-semibold">Nisha Tech Solutions</span> is a growing IT company delivering end-to-end digital solutions — from development to marketing and automation.
+              </p>
+              <p>
+                Our goal is simple: Create solutions that are practical, scalable, and result-driven. We believe in technology that drives real business impact.
+              </p>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="mt-12 backface-hidden">
+              <h4 className="text-primary font-bold mb-8 text-sm uppercase tracking-wider">We work with:</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  "Businesses",
+                  "Educational Institutions",
+                  "Organizations",
+                  "Individuals with Ideas"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-4 group">
+                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                      <CheckCircle2 className="w-4 h-4 text-accent" />
+                    </div>
+                    <span className="text-sm text-primary font-medium tracking-wide">{item}</span>
+                  </div>
+                ))}
               </div>
             </motion.div>
           </motion.div>
 
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:w-1/2"
+            initial={{ opacity: 0, scale: 0.8, rotateY: 20, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, rotateY: 0, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="relative preserve-3d"
           >
-            <h2 className="text-sm font-bold text-primary tracking-[0.2em] uppercase mb-4">About Us</h2>
-            
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-8 leading-tight">
-              Strategy. Design. <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-white">Technology.</span>
-            </h2>
-            
-            <div className="space-y-6 text-slate-400 text-lg leading-relaxed font-light mb-10">
-              <p>
-                <span className="text-white font-medium">Nisha Tech Solutions</span> is a creative-technology studio built to help businesses grow in a fast-moving digital world ⚡
-              </p>
-              <p>
-                We work at the intersection of strategy, design, and technology to create solutions that don’t just look good, but perform. Our services include digital marketing, website and software development, content creation, and business automation — all designed to improve visibility, efficiency, and scalability.
-              </p>
-              <p>
-                At Nisha Tech Solutions, technology is not an expense — it’s an energy that powers growth, innovation, and sustainability.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {['End-to-End Digital Solutions', 'Indian Market Understanding', 'Technology + Strategy', 'Long-term Partnership'].map((item, index) => (
-                <motion.div 
-                  key={item} 
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index }}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg glass-panel hover:bg-white/5 transition-colors border border-white/5"
-                >
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_#FACC15]"></div>
-                  <span className="text-slate-200 font-medium">{item}</span>
-                </motion.div>
-              ))}
-            </div>
+             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-border bg-surface flex items-center justify-center group">
+                <Code2 className="w-32 h-32 text-primary/5 group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+             </div>
+             {/* Stats Overlay */}
+             <div className="absolute -bottom-10 -left-10 bg-white p-8 shadow-2xl border border-border rounded-2xl hidden md:block backdrop-blur-sm bg-white/90">
+                <div className="text-4xl font-bold text-primary mb-2 tracking-tight">Reliable</div>
+                <div className="text-[10px] text-muted uppercase font-bold tracking-[0.2em]">IT Solutions Partner</div>
+             </div>
           </motion.div>
         </div>
       </div>

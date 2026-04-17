@@ -1,50 +1,133 @@
 import React from 'react';
 import { SERVICES } from '../constants';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useSpring, Variants } from 'framer-motion';
+import { ServiceItem } from '../types';
+
+const ServiceCard: React.FC<{ service: ServiceItem; variants: Variants }> = ({ service, variants }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      variants={variants}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateY,
+        rotateX,
+        transformStyle: "preserve-3d",
+      }}
+      className="card-professional group relative preserve-3d cursor-pointer"
+    >
+      <div 
+        style={{ transform: "translateZ(50px)" }}
+        className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center mb-8 group-hover:bg-primary/10 transition-colors duration-500"
+      >
+        <service.icon className="w-8 h-8 text-primary group-hover:scale-110 transition-transform duration-500" />
+      </div>
+      <h4 
+        style={{ transform: "translateZ(40px)" }}
+        className="text-xl font-bold text-primary mb-4 tracking-tight"
+      >
+        {service.title}
+      </h4>
+      <p 
+        style={{ transform: "translateZ(30px)" }}
+        className="text-muted text-sm leading-relaxed mb-8 font-light"
+      >
+        {service.description}
+      </p>
+      <div 
+        style={{ transform: "translateZ(20px)" }}
+        className="w-12 h-1 bg-accent/20 group-hover:w-full transition-all duration-700"
+      ></div>
+      
+      {/* 3D background glow */}
+      <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 blur-2xl -z-10 transition-opacity duration-500"></div>
+    </motion.div>
+  );
+};
 
 const Services: React.FC = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 40 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    }
+  };
+
   return (
-    <section id="services" className="py-32 bg-black relative overflow-hidden scroll-mt-24">
-      
-      {/* Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[400px] bg-primary/5 blur-[150px] pointer-events-none"></div>
+    <section id="services" className="py-24 bg-surface perspective-2000">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+          className="text-center mb-20"
+        >
+          <motion.h2 variants={itemVariants} className="text-[10px] font-bold text-accent tracking-[0.3em] uppercase mb-6">
+            Our Services
+          </motion.h2>
+          <motion.h3 variants={itemVariants} className="text-4xl md:text-5xl font-heading font-bold text-primary mb-8 tracking-tight">
+            Complete Digital Solutions — All in One Place
+          </motion.h3>
+          <motion.p variants={itemVariants} className="text-muted max-w-2xl mx-auto text-lg font-light">
+            We design and build powerful digital systems, websites, and marketing strategies that help you grow, scale, and succeed in the digital world.
+          </motion.p>
+        </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-24">
-          <h2 className="text-sm font-bold text-primary tracking-[0.2em] uppercase mb-4">Our Expertise</h2>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">Digital Capabilities</h2>
-          <p className="max-w-2xl mx-auto text-slate-400 text-lg font-light">
-            We provide a full spectrum of digital services designed to accelerate your business transformation.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES.map((service, idx) => (
-             <motion.div
-               key={service.id}
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true, margin: "-50px" }}
-               transition={{ delay: idx * 0.1, duration: 0.5 }}
-               className="glass-card rounded-2xl p-8 relative group overflow-hidden"
-             >
-              {/* Hover Gradient Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
-              <div className="w-14 h-14 rounded-xl bg-white/5 border border-white/10 mb-6 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300 relative z-10 shadow-lg">
-                <service.icon className="h-6 w-6 text-primary group-hover:text-black transition-colors duration-300" />
-              </div>
-              
-              <h3 className="text-xl font-heading font-bold text-white mb-4 group-hover:text-primary transition-colors relative z-10">
-                {service.title}
-              </h3>
-              
-              <p className="text-slate-400 text-sm leading-relaxed relative z-10 group-hover:text-white transition-colors">
-                {service.description}
-              </p>
-            </motion.div>
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          style={{ perspective: 1000 }}
+        >
+          {SERVICES.map((service) => (
+            <ServiceCard key={service.id} service={service} variants={itemVariants} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

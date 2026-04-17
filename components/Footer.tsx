@@ -1,29 +1,39 @@
 import React from 'react';
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
+import { motion } from 'framer-motion';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black text-slate-400 pt-20 pb-10 relative border-t border-white/5">
-      
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+    <footer className="bg-primary text-white pt-24 pb-12 relative overflow-hidden">
+      {/* Subtle background glow */}
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-[120px] translate-x-1/2 translate-y-1/2"></div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
           
           {/* Brand Info */}
-          <div>
-            <div className="mb-6">
-               <img 
-                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPUPRZRHNJHMixNwd9_eVBwuDKXNNw5sMUowScagq8XN9tf-nQjL7E_jedkm40sPWXOxKrXsRLxpt4Z5iuumQhvfJgOHzCzZZop0P5M9_5ITqKChmlyL2bvzIA8Atnxrt1G-84gg7vCirAQ_RkXyCoz6GZpqWIYeZji8bPShE7plCJjfkYN39reeVgO7Q/s16000/Nisha%20Tech%20Solutions.png" 
-                 alt="Nisha Tech Solutions" 
-                 className="h-12 w-auto object-contain"
-               />
+          <div className="space-y-8">
+            <div className="flex items-center group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <img 
+                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhw_-75SOtpSirjw8W4nm_bKirT2otHIRVRhUz2J29G-1bWDopIjW4bjUEnO1A6B2hRU3Lq5YXahJcglT8wWuv6AXQbjr5Z706pu0XD1Z8XxfrPjcaXUz90O2SRr7TSUMGonkp0GLYh_BdVhYPQwbtj36vsNbbGMq7ajUMDp3QcpMY3bWl1vRD2-Wc17wM/s16000/Nisha%20Tech%20Solutions%20Logo.png" 
+                alt="Nisha Tech Solutions Logo" 
+                className="h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
             </div>
-            <p className="text-sm leading-relaxed mb-6 font-light">
-              Pioneering digital transformation for Indian enterprises. We build the technology that powers the future.
+            <p className="text-sm leading-relaxed text-white/50 font-light">
+              Your complete partner for digital solutions. We design and build powerful digital systems, websites, and marketing strategies.
             </p>
-            <div className="flex space-x-3">
+            <div className="flex space-x-4">
               {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="w-8 h-8 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-black transition-all">
+                <a key={i} href="#" className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-accent hover:text-white transition-all duration-500 border border-white/10">
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
@@ -32,11 +42,11 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-bold text-sm uppercase tracking-wider mb-6">Company</h3>
-            <ul className="space-y-3">
-              {NAV_ITEMS.slice(0, 5).map((item) => (
-                <li key={item.label} className="text-sm">
-                  <a href={item.href} className="hover:text-primary transition-colors">
+            <h3 className="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-10">Company</h3>
+            <ul className="space-y-4">
+              {NAV_ITEMS.map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} className="text-sm text-white/50 hover:text-white transition-colors font-light tracking-wide">
                     {item.label}
                   </a>
                 </li>
@@ -44,47 +54,46 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Solutions */}
           <div>
-            <h3 className="text-white font-bold text-sm uppercase tracking-wider mb-6">Solutions</h3>
-            <ul className="space-y-3">
-              <li className="text-sm hover:text-primary cursor-pointer transition-colors">Enterprise Software</li>
-              <li className="text-sm hover:text-primary cursor-pointer transition-colors">Cloud Architecture</li>
-              <li className="text-sm hover:text-primary cursor-pointer transition-colors">AI & Automation</li>
-              <li className="text-sm hover:text-primary cursor-pointer transition-colors">Digital Strategy</li>
+            <h3 className="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-10">Solutions</h3>
+            <ul className="space-y-4">
+              <li className="text-sm text-white/50 hover:text-white cursor-pointer transition-colors font-light tracking-wide">Web Development</li>
+              <li className="text-sm text-white/50 hover:text-white cursor-pointer transition-colors font-light tracking-wide">Software Engineering</li>
+              <li className="text-sm text-white/50 hover:text-white cursor-pointer transition-colors font-light tracking-wide">ERP Systems</li>
+              <li className="text-sm text-white/50 hover:text-white cursor-pointer transition-colors font-light tracking-wide">Digital Marketing</li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="text-white font-bold text-sm uppercase tracking-wider mb-6">Connect</h3>
-            <ul className="space-y-4">
-              <li className="text-sm">
-                <span className="block text-slate-500 text-xs mb-1">Phone</span>
-                <span className="text-white">9699658462</span>
+            <h3 className="text-white font-bold text-[10px] uppercase tracking-[0.3em] mb-10">Contact</h3>
+            <ul className="space-y-6">
+              <li className="group">
+                <span className="block text-white/30 text-[9px] uppercase font-bold tracking-[0.2em] mb-2">Phone</span>
+                <span className="text-white font-medium group-hover:text-accent transition-colors">+91 95035 50351</span>
               </li>
-              <li className="text-sm">
-                <span className="block text-slate-500 text-xs mb-1">Email</span>
-                <span className="text-white">nishatechx@gmail.com</span>
+              <li className="group">
+                <span className="block text-white/30 text-[9px] uppercase font-bold tracking-[0.2em] mb-2">Email</span>
+                <span className="text-white group-hover:text-accent transition-colors">info@nishatech.in</span>
               </li>
-              <li className="text-sm">
-                <span className="block text-slate-500 text-xs mb-1">HQ</span>
-                <span className="text-white">Washim, Maharashtra</span>
+              <li className="group">
+                <span className="block text-white/30 text-[9px] uppercase font-bold tracking-[0.2em] mb-2">Office</span>
+                <span className="text-white group-hover:text-accent transition-colors">Washim, Maharashtra, India</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-600">
+        <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center text-[9px] text-white/20 uppercase tracking-[0.3em] font-bold">
           <p>
-            &copy; {new Date().getFullYear()} Nisha Tech Solutions. All rights reserved.
+            &copy; {new Date().getFullYear()} Nisha Tech Solutions. All Rights Reserved.
           </p>
-          <div className="flex items-center gap-2 mt-4 md:mt-0">
-             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-             <span>Operational Status: Online</span>
+          <div className="flex items-center gap-6 mt-6 md:mt-0">
+             <span className="hover:text-white/40 transition-colors cursor-pointer">ISO 9001:2015 Certified Process</span>
           </div>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 };

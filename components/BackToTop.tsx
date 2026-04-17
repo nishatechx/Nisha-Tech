@@ -35,10 +35,10 @@ const BackToTop: React.FC = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 bg-primary text-black rounded-full shadow-lg hover:shadow-xl transition-all border border-white/10 group"
+          className="fixed bottom-8 right-8 z-50 p-3 bg-primary text-white rounded-full shadow-lg hover:shadow-xl hover:bg-primary-dark transition-all"
           aria-label="Scroll to top"
         >
-          <ArrowUp className="h-6 w-6 group-hover:-translate-y-1 transition-transform duration-300" />
+          <ArrowUp className="h-6 w-6" />
         </motion.button>
       )}
     </AnimatePresence>

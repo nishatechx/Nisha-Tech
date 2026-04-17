@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,92 +22,100 @@ const Navbar: React.FC = () => {
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', href);
     } else if (href === '#home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      window.history.pushState(null, '', href);
     }
   };
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out flex justify-center ${scrolled ? 'py-4' : 'py-6'}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-primary/80 backdrop-blur-md shadow-2xl py-3 border-b border-white/10' : 'bg-transparent py-6'}`}
     >
-      <div className={`
-        relative px-6 rounded-full transition-all duration-500
-        ${scrolled 
-          ? 'w-[90%] max-w-7xl glass-panel shadow-glass border border-white/10 bg-black/40' 
-          : 'w-full max-w-7xl bg-transparent border-transparent'
-        }
-      `}>
-        <div className="flex justify-between items-center h-14">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           
           {/* Logo */}
-          <div 
-            className="flex-shrink-0 flex items-center cursor-pointer group" 
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center cursor-pointer group" 
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
              <img 
-               src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgPUPRZRHNJHMixNwd9_eVBwuDKXNNw5sMUowScagq8XN9tf-nQjL7E_jedkm40sPWXOxKrXsRLxpt4Z5iuumQhvfJgOHzCzZZop0P5M9_5ITqKChmlyL2bvzIA8Atnxrt1G-84gg7vCirAQ_RkXyCoz6GZpqWIYeZji8bPShE7plCJjfkYN39reeVgO7Q/s16000/Nisha%20Tech%20Solutions.png" 
-               alt="Nisha Tech Solutions" 
-               className="h-12 w-auto object-contain"
+                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhw_-75SOtpSirjw8W4nm_bKirT2otHIRVRhUz2J29G-1bWDopIjW4bjUEnO1A6B2hRU3Lq5YXahJcglT8wWuv6AXQbjr5Z706pu0XD1Z8XxfrPjcaXUz90O2SRr7TSUMGonkp0GLYh_BdVhYPQwbtj36vsNbbGMq7ajUMDp3QcpMY3bWl1vRD2-Wc17wM/s16000/Nisha%20Tech%20Solutions%20Logo.png" 
+                alt="Nisha Tech Solutions Logo" 
+                className="h-12 md:h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                referrerPolicy="no-referrer"
              />
-          </div>
+          </motion.div>
           
           {/* Desktop Menu */}
-          <div className="hidden lg:flex space-x-1">
-            {NAV_ITEMS.map((item) => (
-              <a
+          <div className="hidden lg:flex items-center gap-10">
+            {NAV_ITEMS.map((item, i) => (
+              <motion.a
                 key={item.label}
                 href={item.href}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="px-4 py-2 rounded-full text-sm font-medium text-slate-300 hover:text-primary hover:bg-white/5 transition-all relative group overflow-hidden"
+                className="text-[10px] font-bold uppercase tracking-[0.2em] transition-all text-white/70 hover:text-white relative group"
               >
-                <span className="relative z-10">{item.label}</span>
-                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-              </a>
+                {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent transition-all duration-300 group-hover:w-full"></span>
+              </motion.a>
             ))}
-          </div>
-
-          {/* Call to Action (Desktop) */}
-          <div className="hidden lg:block">
-             <a href="#contact" className="px-5 py-2 rounded-full bg-primary hover:bg-white text-black text-sm font-bold transition-all shadow-glow hover:shadow-white/20">
-               Get Started
-             </a>
+             <motion.a 
+               href="#contact" 
+               initial={{ opacity: 0, scale: 0.9 }}
+               animate={{ opacity: 1, scale: 1 }}
+               transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+               className="px-6 py-2.5 rounded-lg font-bold text-[10px] uppercase tracking-[0.2em] transition-all bg-accent text-white hover:bg-opacity-90 btn-hover-effect shadow-xl shadow-accent/20"
+             >
+               Contact Us
+             </motion.a>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center">
+          <div className="lg:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-full hover:bg-white/10 text-white transition-colors focus:outline-none"
+              className="text-white focus:outline-none p-2"
+              aria-label="Toggle Menu"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
             </button>
           </div>
-        </div>
       </div>
 
       {/* Mobile Menu Dropdown */}
-      {isOpen && (
-        <div className="absolute top-24 left-1/2 -translate-x-1/2 w-[90%] glass-panel rounded-2xl p-4 lg:hidden border border-white/10 z-50 animate-fadeIn">
-          <div className="flex flex-col space-y-2">
-            {NAV_ITEMS.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="block px-4 py-3 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5 hover:text-primary hover:pl-6 transition-all"
-              >
-                {item.label}
-              </a>
-            ))}
-             <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="mt-4 block px-4 py-3 rounded-xl bg-primary text-center text-black font-bold shadow-glow">
-               Get Started
-             </a>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-full left-0 w-full bg-primary border-b border-white/10 lg:hidden py-6 px-6 shadow-xl overflow-hidden"
+          >
+            <div className="flex flex-col space-y-4">
+              {NAV_ITEMS.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="text-lg font-medium text-white/80 hover:text-white transition-colors p-2"
+                >
+                  {item.label}
+                </a>
+              ))}
+               <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="mt-4 block w-full py-4 rounded-xl bg-accent text-center text-white font-bold shadow-lg">
+                 Let's Talk
+               </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
